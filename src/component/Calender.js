@@ -47,18 +47,18 @@ function Calender(props) {
                     <div className="box-today" key={i} >
                         {
                             i%7 === 0 ?
-                            <h3 className="monthNum-red" onClick={()=>Click()}>
+                            <h4 className="monthNum-red" onClick={()=>Click()}>
                             {monthArr[i]}
-                            </h3>
+                            </h4>
                             :
                             i === 6 || i === 13 || i ===20 ||i === 27 || i === 34 ||i === 41 ?
-                            <h3 className="monthNum-blue" onClick={()=>Click()}>
+                            <h4 className="monthNum-blue" onClick={()=>Click()}>
                             {monthArr[i]}
-                            </h3>
+                            </h4>
                             :
-                            <h3 className="monthNum" onClick={()=>Click()}>
+                            <h4 className="monthNum" onClick={()=>Click()}>
                             {monthArr[i]}
-                            </h3>
+                            </h4>
                         }
                     </div>
                     :
@@ -66,18 +66,18 @@ function Calender(props) {
                     <div className="box" key={i} >
                         {
                             i%7 === 0 ?
-                            <h3 className="monthNum-red" onClick={()=>Click()}>
+                            <h6 className="monthNum-red" onClick={()=>Click()}>
                             {monthArr[i]}
-                            </h3>
+                            </h6>
                             :
                             i === 6 || i === 13 || i ===20 ||i === 27 || i === 34 ||i === 41 ?
-                            <h3 className="monthNum-blue" onClick={()=>Click()}>
+                            <h6 className="monthNum-blue" onClick={()=>Click()}>
                             {monthArr[i]}
-                            </h3>
+                            </h6>
                             :
-                            <h3 className="monthNum" onClick={()=>Click()}>
+                            <h6 className="monthNum" onClick={()=>Click()}>
                             {monthArr[i]}
-                            </h3>
+                            </h6>
                         }
                     </div>
                     

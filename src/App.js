@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './App.css';
+import Button from 'react-bootstrap/Button';
 import Calender from './component/Calender.js';
 function App() {
   let [today, setToday] = useState(new Date());
@@ -33,15 +34,15 @@ function App() {
   return (
     <div className='Calender'>
       <div className='header'>
-        <h1 className='date-title'>
-          <button onClick={() => beforYear()}>{year-1}년</button>
+        <h3 className='date-title'>
+          <Button onClick={() => beforYear()}>{year-1}년</Button>
           &ensp;
-          <button onClick={() => beforMonth()}><img className="button-img" src="../left.png" /></button>
+          <Button onClick={() => beforMonth()}><img className="button-img" src="../left.png" /></Button>
           &ensp;{year}년 {month}월&ensp;
-          <button onClick={() => nextMonth()}><img className="button-img" src="../right.png" /></button>
+          <Button onClick={() => nextMonth()}><img className="button-img" src="../right.png" /></Button>
           &ensp;
-          <button onClick={() => nextYear()}>{year+1}년</button>
-        </h1>
+          <Button onClick={() => nextYear()}>{year+1}년</Button>
+        </h3>
 
       </div>
       <Calender month={month} year={year} today={today}/>
