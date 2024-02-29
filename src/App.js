@@ -17,7 +17,7 @@ function App() {
         <Nav className="me-auto">
           <NavDropdown>
             <NavItem>
-              <Button className='nav-button' onClick={()=>{setModal(true)}}>달력</Button>
+              <Button className='nav-button' onClick={()=>{setModal(!modal)}}>달력</Button>
             </NavItem>
           </NavDropdown>
         </Nav>
