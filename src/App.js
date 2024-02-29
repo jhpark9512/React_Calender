@@ -2,7 +2,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container, Nav, NavbarBrand, NavItem, NavbarToggle, NavDropdown, NavbarCollapse } from 'react-bootstrap';
-import { Routes, Route, Link} from 'react-router-dom';
 import Calender from './component/Calender.js';
 import { useState } from 'react';
 
@@ -18,15 +17,15 @@ function App() {
         <Nav className="me-auto">
           <NavDropdown>
             <NavItem>
-              <Button className='nav-button'><Link to="/calender">달력</Link></Button>
+              <Button className='nav-button' onClick={()=>{setModal(true)}}>달력</Button>
             </NavItem>
           </NavDropdown>
         </Nav>
       </Navbar>
       <br></br>
-      <Routes>
-      <Route path="/calender" element={<Calender/>}/>
-      </Routes>
+      {
+        modal == true ? <Calender/> : null
+      } 
     </div>
 
   );
