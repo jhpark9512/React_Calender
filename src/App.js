@@ -15,11 +15,11 @@ function App() {
       <Navbar bg="dark" variant="dark">
         <NavbarBrand>MyApp</NavbarBrand>
         <Nav className="me-auto">
-          <NavDropdown>
+          <Nav>
             <NavItem>
               <Button className='nav-button' onClick={()=>{setModal(!modal)}}>달력</Button>
             </NavItem>
-          </NavDropdown>
+          </Nav>
         </Nav>
       </Navbar>
       <br></br>

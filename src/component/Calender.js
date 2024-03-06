@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from 'react';
+import Box from './box';
 import Button from 'react-bootstrap/Button';
 
 function Calender() {
@@ -43,10 +44,6 @@ function Calender() {
         }
     }
 
-    //날짜 선택
-    const Click = () => {
-        console.log('hi')
-    }
 
     //날짜 배열
     for (var i = 0; i < startDate; i++) {
@@ -73,9 +70,9 @@ function Calender() {
                 </h3>
                 <div className="grid">
                     {
-                        weekArr.map(function (a, i) {
+                        weekArr.map(function (a, index) {
                             return (
-                                <div className="day" key={i}>
+                                <div className="day" key={index}>
                                     {
                                         weekArr[i]
                                     }
@@ -84,45 +81,9 @@ function Calender() {
                         })
                     }
                     {
-                        monthArr.map(function (a, i) {
+                        monthArr.map(function (a, index) {
                             return (
-                                new Date().getFullYear() === year && new Date().getMonth() + 1 === month && monthArr[i] === currentDate ?
-                                    <div className="box-today" key={i} >
-                                        {
-                                            i % 7 === 0 ?
-                                                <h4 className="monthNum-red" onClick={() => Click()}>
-                                                    {monthArr[i]}
-                                                </h4>
-                                                :
-                                                i === 6 || i === 13 || i === 20 || i === 27 || i === 34 || i === 41 ?
-                                                    <h4 className="monthNum-blue" onClick={() => Click()}>
-                                                        {monthArr[i]}
-                                                    </h4>
-                                                    :
-                                                    <h4 className="monthNum" onClick={() => Click()}>
-                                                        {monthArr[i]}
-                                                    </h4>
-                                        }
-                                    </div>
-                                    :
-
-                                    <div className="box" key={i} >
-                                        {
-                                            i % 7 === 0 ?
-                                                <h6 className="monthNum-red" onClick={() => Click()}>
-                                                    {monthArr[i]}
-                                                </h6>
-                                                :
-                                                i === 6 || i === 13 || i === 20 || i === 27 || i === 34 || i === 41 ?
-                                                    <h6 className="monthNum-blue" onClick={() => Click()}>
-                                                        {monthArr[i]}
-                                                    </h6>
-                                                    :
-                                                    <h6 className="monthNum" onClick={() => Click()}>
-                                                        {monthArr[i]}
-                                                    </h6>
-                                        }
-                                    </div>
+                                    <Box key={index} year = {year} month={month} currentDate= {currentDate} monthArr={monthArr} index={index}/>
                             )
 
                         })
