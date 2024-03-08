@@ -1,5 +1,5 @@
 
-import { ref, set, get, child} from "firebase/database";
+import { ref, set, get, child } from "firebase/database";
 import { uid } from "uid";
 import { db } from "../firebase";
 import React, { useState } from "react";
@@ -52,24 +52,23 @@ function Creat() {
 }
 
 function Read() {
-        const dbRef = ref(db);
-        get(child(dbRef, "/list"))
-          .then(snapshot => {
-          if (snapshot.exists()) {
-            var data = snapshot.val();
-            console.log(data[0].values.content)
-          } else {
-            console.log("No data available");
-          }
-        })
-          .catch(error => {
-          console.error(error);
-          
-        });
+    const dbRef = ref(db);
+    get(child(dbRef, "/list"))
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                console.log(snapshot.val())
 
-      return (
-        <div>1</div>
-      )
+            } else {
+                console.log("No data available");
+            }
+        })
+        .catch(error => {
+            console.error(error);
+        });
+return (
+    <div>
+    </div>
+)
 }
 
 
