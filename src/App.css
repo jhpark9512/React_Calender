@@ -1,3 +1,11 @@
+/* App.js*/
+.nav-button{
+  width: 200px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+/* Calender.js*/
 .Calender{
   width : 770px;
   height: 800px;
@@ -8,19 +16,17 @@
   display: flex;
 }
 
-.nav-button{
-  width: 200px;
-}
-
 .date-title{
   text-align: center;
 }
+
 .box{
   width: 100px;
   height: 100px;
   border: 1px solid black;
   margin: auto;
 }
+
 .grid{
   width: 770px;
   height: 650px;
@@ -29,38 +35,67 @@
   grid-gap: 5px;
   margin: auto;
 }
+
 .day{
   text-align: center;
 }
+
 .monthNum{
   margin : 10px 0px 0px 10px;
   font-weight:normal;
 }
+
 .monthNum-red{
   margin: 10px 0px 0px 10px;
   font-weight:normal;
   color : red
 }
+
 .monthNum-blue{
   margin: 10px 0px 0px 10px;
   font-weight:normal;
   color : blue
 }
+
 .today-box{
   width: 100px;
   height: 100px;
   
   margin:auto;
 }
+
 .box-select{
   width: 100px;
   height: 100px;
   background-color: skyblue;
   border: 3px solid black;
 }
+
 .button-img{
   width: 20px;
   height: 20px;
   margin-bottom: 2px;
 }
+
+/* Creat.js*/
+.writeForm{
+  width : 300px;
+  height: 350px;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+  display: flex;
+}
+.formContainer{
+  width : 300px;
+  height: 300px;
+  display:inline-block;
+}
+
+
+.form{
+  display: grid;
+  grid-template-columns: repeat(1,1fr);
+}
+
 
