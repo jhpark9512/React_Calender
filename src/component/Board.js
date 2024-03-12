@@ -1,47 +1,33 @@
-import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
+import { doc, deleteDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
-import Update from './Update.js';
-import { Route, Routes, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
 
-function Board() {
-    
-    let [read, setRead] = useState([]);
-    const navigate = useNavigate();
+function Board(props) {
 
-    useEffect(() => {
-        const data = async () => {
-            const query = await getDocs(collection(db, 'crud'));
-            setRead(query.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-        }
-        data()
-    }, [])
+    const readData = props.data;
 
-    const deleteData = async (read) => {
-        await deleteDoc(doc(db, 'crud', read.id))
+    const deleteData = async (readData) => {
+        await deleteDoc(doc(db, 'crud', readData.id))
         window.location.reload();
     }
 
     return (
         <div>
             {
-                read.map((read) => {
+                readData.map((readData) => {
                     return (
-                        <ul key={read.id}>
-                            <li>제목 : {read.title}</li>
-                            <li>작성자 : {read.name}</li>
-                            <li>내용 : {read.content}</li>
-                            <li>작성일 : {read.wdate}</li>
-                            <li>수정일 : {read.udate}</li>
-                            <button onClick={() => navigate("/Update/"+read.id)}>수정</button>
-                            <button onClick={() => deleteData(read)}>삭제</button>
+                        <ul key={readData.id}>
+                            <li>제목 : {readData.title}</li>
+                            <li>작성자 : {readData.name}</li>
+                            <li>내용 : {readData.content}</li>
+                            <li>작성일 : {readData.wdate}</li>
+                            <li>수정일 : {readData.udate}</li>
+                            <button>수정</button>
+                            <button onClick={() => deleteData(readData)}>삭제</button>
                         </ul>
                     )
                 })
             }
-            <Routes>
-            <Route path="/Update/:id" element={<Update read={read}/>} />
-            </Routes>
         </div>
     )
 }

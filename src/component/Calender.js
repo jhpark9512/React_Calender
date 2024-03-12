@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-import Box from './Box';
+import Box from './box';
 import Button from 'react-bootstrap/Button';
 
 function Calender() {
@@ -83,7 +83,7 @@ function Calender() {
                     {
                         monthArr.map(function (a, index) {
                             return (
-                                    <Box key={index} year = {year} month={month} currentDate= {currentDate} monthArr={monthArr} index={index}/>
+                                <Box key={index} year={year} month={month} currentDate={currentDate} monthArr={monthArr} index={index} />
                             )
 
                         })
