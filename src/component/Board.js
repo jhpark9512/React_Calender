@@ -1,10 +1,13 @@
-import { collection, getDocs, query } from "firebase/firestore";
+import { collection, getDocs, doc, deleteDoc } from "firebase/firestore";
 import React, { useState, useEffect } from "react";
+import Update from './Update.js';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 import { db } from '../firebase';
-import deleteData from "./Delete";
 
-function Read() {
+function Board() {
+    
     let [read, setRead] = useState([]);
+    const navigate = useNavigate();
 
     useEffect(() => {
         const data = async () => {
@@ -13,28 +16,36 @@ function Read() {
         }
         data()
     }, [])
-    console.log(read)
+
+    const deleteData = async (read) => {
+        await deleteDoc(doc(db, 'crud', read.id))
+        window.location.reload();
+    }
+
     return (
         <div>
             {
-                read.map((read, index) => {
+                read.map((read) => {
                     return (
-                        <ul key={index}>
+                        <ul key={read.id}>
                             <li>제목 : {read.title}</li>
                             <li>작성자 : {read.name}</li>
                             <li>내용 : {read.content}</li>
                             <li>작성일 : {read.wdate}</li>
                             <li>수정일 : {read.udate}</li>
-                            <button>수정</button>
-                            <button onClick={()=> deleteData(read.id)}>삭제</button>
+                            <button onClick={() => navigate("/Update/"+read.id)}>수정</button>
+                            <button onClick={() => deleteData(read)}>삭제</button>
                         </ul>
                     )
                 })
             }
+            <Routes>
+            <Route path="/Update/:id" element={<Update read={read}/>} />
+            </Routes>
         </div>
     )
 }
 
 
 
-export default Read;
+export default Board;

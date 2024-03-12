@@ -4,17 +4,25 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container, Nav, NavbarBrand, NavItem, NavbarToggle, NavDropdown, NavbarCollapse } from 'react-bootstrap';
 import Calender from './component/Calender.js';
 import Create from './component/Create.js';
-import Read from './component/Read.js';
+import Board from './component/Board.js';
+import Update from './component/Update.js';
 import { useState } from 'react';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 
 function App() {
 
-  let [modal1, setModal1] = useState(false);
-  let [modal2, setModal2] = useState(false);
-  let [modal3, setModal3] = useState(false);
-  
-  
+  const navigate = useNavigate();
+
+  const moveToCalender = () => {
+    navigate('/calender')
+  }
+  const moveToBoard = () => {
+    navigate('/Board')
+  }
+  const moveToWrite = () => {
+    navigate('/Create')
+  }
   return (
     <div className='myApp'>
 
@@ -23,25 +31,22 @@ function App() {
         <Nav className="me-auto">
           <Nav>
             <NavItem>
-              <Button className='nav-button' onClick={() => { setModal1(!modal1) }}>달력</Button>
-              <Button className='nav-button' onClick={() => { setModal2(!modal2) }}>글 작성</Button>
-              <Button className='nav-button' onClick={() => { setModal3(!modal3) }}>글 목록</Button>
+              <Button className='nav-button' onClick={() => { moveToCalender() }}>달력</Button>
+              <Button className='nav-button' onClick={() => { moveToBoard() }}>글 목록</Button>
+              <Button className='nav-button' onClick={() => { moveToWrite() }}>글 작성</Button>
             </NavItem>
           </Nav>
         </Nav>
       </Navbar>
       <br></br>
-      {
-        modal1 == true ? <Calender/> : null
-      }
-      {
-        modal2 == true ? <Create/>: null
-      }
-      {
-      modal3 == true ? <Read/> : null
-      }
+
+      <Routes>
+      <Route path="/Calender" element={<Calender/>} />
+      <Route path="/Board/*" element={<Board/>} />
+      <Route path="/Create" element={<Create/>} />
+      </Routes>
     </div>
   );
-}
 
+}
 export default App;
