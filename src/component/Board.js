@@ -13,9 +13,6 @@ function Board(props) {
 
     return (
         <div>
-            <Routes>
-            <Route path="/Update/:id" element={<Update read={read}/>} />
-            </Routes>
             {
                 readData.map((readData) => {
                     return (
