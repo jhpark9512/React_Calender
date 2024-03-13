@@ -24,6 +24,9 @@ function Board() {
 
     return (
         <div>
+            <Routes>
+            <Route path="/Update/:id" element={<Update read={read}/>} />
+            </Routes>
             {
                 read.map((read) => {
                     return (
@@ -39,9 +42,7 @@ function Board() {
                     )
                 })
             }
-            <Routes>
-            <Route path="/Update/:id" element={<Update read={read}/>} />
-            </Routes>
+            
         </div>
     )
 }
