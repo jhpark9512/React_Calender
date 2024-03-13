@@ -85,7 +85,6 @@ function Calender() {
                             return (
                                 <Box key={index} year={year} month={month} currentDate={currentDate} monthArr={monthArr} index={index} />
                             )
-
                         })
                     }
                 </div>

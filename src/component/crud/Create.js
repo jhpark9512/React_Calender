@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import {db} from '../firebase.js';
+import {db} from '../../firebase.js';
 import { addDoc, collection } from "firebase/firestore";
+import { useNavigate,} from 'react-router-dom';
 
 function Create() {
     let [newTitle, setNewTitle] = useState("")
@@ -9,6 +10,8 @@ function Create() {
     let newWdate = new Date().getFullYear() + "년 " + new Date().getMonth() + "월 " + new Date().getDate() + "일"
     let [newUdate, setNewUdate] = useState(newWdate)
     let [newDel, setNewDel] = useState("N")
+
+    const navigate = useNavigate();
 
     const input = async () =>{
         
@@ -24,6 +27,7 @@ function Create() {
         setNewTitle("")
         setNewName("")
         setNewContent("")
+        navigate('/Board')
         window.location.reload();
     }
 
@@ -39,6 +43,7 @@ function Create() {
                     <label htmlFor="content">내용</label>
                     <textarea name="content" onChange={(e)=>{setNewContent(e.target.value)}}/><br />
                     <button type="submit">글 등록</button>
+                    <button onClick={()=> navigate('/Board')}>뒤로 가기</button>
                 </form>
             </div>
         </div>
