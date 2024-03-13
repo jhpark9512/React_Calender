@@ -6,11 +6,25 @@ import Calender from './component/Calender.js';
 import Create from './component/Create.js';
 import Board from './component/Board.js';
 import Update from './component/Update.js';
-import { useState } from 'react';
+import { collection, getDocs } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { db } from './firebase';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 
 
 function App() {
+
+  let [data, setData] = useState([]);
+
+
+  useEffect(() => {
+    const data = async () => {
+      const query = await getDocs(collection(db, 'crud'));
+      setData(query.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }
+    data()
+  }, [])
+  console.log(data)
 
   const navigate = useNavigate();
 
@@ -41,10 +55,12 @@ function App() {
       <br></br>
 
       <Routes>
-      <Route path="/Calender" element={<Calender/>} />
-      <Route path="/Board/*" element={<Board/>} />
-      <Route path="/Create" element={<Create/>} />
+        <Route path="/Calender" element={<Calender />} />
+        <Route path="/Board/*" element={<Board data={data} />} />
+        <Route path="/Create" element={<Create />} />
+        <Route path="/Update/:id" element={<Update data={data} />} />
       </Routes>
+
     </div>
   );
 
