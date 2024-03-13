@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from 'react';
-import Box from './box';
+import Box from './Box.js'
 import Button from 'react-bootstrap/Button';
 
 function Calender() {
