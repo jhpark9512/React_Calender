@@ -1,22 +1,28 @@
-import { doc, deleteDoc } from "firebase/firestore";
+import { doc } from "firebase/firestore";
 import React from "react";
 import { db } from '../../firebase';
-import { useNavigate, Link} from 'react-router-dom';
+import { useNavigate, Link, Outlet} from 'react-router-dom';
 
-function Board(props) {
+function Board(){
+    return(
+        <div>
+            <Outlet/>
+        </div>
+    )
+}
+
+function List(props) {
+    
     const readData = props.data;
     
     const navigate = useNavigate();
     
-    //데이터 삭제
-    const deleteData = async (readData) => {
-        await deleteDoc(doc(db, 'crud', readData.id))
-        window.location.reload();
-    }
 
     return (
         <div className="container">
+             
             <button className="write-button" onClick={()=> navigate('/Create')}>글 작성</button>
+            <button onClick={()=>navigate('/Register')}>가입</button>
             <table>
                     <thead>
                     <tr>
@@ -25,26 +31,19 @@ function Board(props) {
                         <th className="tableWdate">작성일자</th>
                     </tr>
                     </thead>
+                    <tbody>
             {
                 readData.map((readData) => {
                     return (
                         <tr key={readData.id}>
-                            <td className="tableTitle"><Link to={`detail/${readData.id}`}>{readData.title}</Link></td>
+                            <td className="dataTitle"><Link to={`/Board/Detail/${readData.id}`}>{readData.title}</Link></td>
                             <td className="tableName">{readData.name}</td>
-                            <td className="tableWdate">{readData.wdate}</td>
+                            <td className="dataWdate">{readData.wdate}</td>
                         </tr>
-                        // <ul className="list" key={readData.id}>
-                        //     <li>제목 : {readData.title}</li>
-                        //     <li>작성자 : {readData.name}</li>
-                        //     <li>내용 : {readData.content}</li>
-                        //     <li>작성일 : {readData.wdate}</li>
-                        //     <li>수정일 : {readData.udate}</li>
-                        //     <button onClick={()=> navigate('/Board/Update/'+readData.id)}>수정</button>
-                        //     <button onClick={() => deleteData(readData)}>삭제</button>
-                        // </ul>
                     )
                 })
             }
+            </tbody>
             </table>
         
         </div>
@@ -52,5 +51,4 @@ function Board(props) {
 }
 
 
-
-export default Board;
+export {Board, List};

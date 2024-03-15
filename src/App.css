@@ -114,9 +114,7 @@ table{
   border: 1px solid black;
   width:100%;
 }
-th {
-  text-align: center;
-}
+
 .tableTitle{
   width: 500px;
   text-align: center;

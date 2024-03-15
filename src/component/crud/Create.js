@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import {db} from '../../firebase.js';
+import React, { useState, useEffect, useRef } from "react";
+import { db } from '../../firebase.js';
 import { addDoc, collection } from "firebase/firestore";
-import { useNavigate,} from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
 
-function Create() {
+function Create(props) {
     let [newTitle, setNewTitle] = useState("")
     let [newName, setNewName] = useState("")
     let [newContent, setNewContent] = useState("")
@@ -11,10 +11,17 @@ function Create() {
     let [newUdate, setNewUdate] = useState(newWdate)
     let [newDel, setNewDel] = useState("N")
 
-    const navigate = useNavigate();
+    let [nameArr, setNameArr] = useState([])
 
-    const input = async () =>{
-        
+    const navigate = useNavigate();
+    
+    const userData = props.userData;
+    userData.map((index) => { nameArr.push(index.name) })
+
+
+
+    const input = async () => {
+
         await addDoc(collection(db, "crud"), {
             title: newTitle,
             name: newName,
@@ -27,23 +34,43 @@ function Create() {
         setNewTitle("")
         setNewName("")
         setNewContent("")
-        navigate('/Board')
-        window.location.reload();
+        navigate('/Board/List')
     }
+
+
 
     return (
         <div className="writeForm">
             <div className="formContainer">
                 <h4 style={{ textAlign: "center" }}>글 작성</h4>
-                <form className="form" onSubmit={(e)=>input(e.preventDefault())}>
+                <form className="form" onSubmit={(e) => {
+                    if (newTitle == "") {
+                        alert('제목을 입력해주세요')
+                        return false;
+                    } else if (newName == "") {
+                        alert('작성자를 선택해주세요')
+                        return false;
+                    } else {
+                        input(e.preventDefault())
+                    }
+                }}>
                     <label htmlFor="title">제목</label>
-                    <input type="text" name="title" onChange={(e)=>{setNewTitle(e.target.value)}}/><br />
+                    <input type="text" name="title" onChange={(e) => { setNewTitle(e.target.value) }} /><br />
                     <label htmlFor="name">작성자</label>
-                    <input type="text" name="name" onChange={(e)=>{setNewName(e.target.value)}}/><br />
+                    <select onChange={(e) => setNewName(e.target.value)}>
+                        {
+                            nameArr.map((value, index) => {
+                                return (
+                                    <option key={index}>{nameArr[index]}</option>
+                                )
+                            })
+                        }
+                    </select>
+                    <br />
                     <label htmlFor="content">내용</label>
-                    <textarea name="content" onChange={(e)=>{setNewContent(e.target.value)}}/><br />
+                    <textarea name="content" onChange={(e) => { setNewContent(e.target.value) }} /><br />
                     <button type="submit">글 등록</button>
-                    <button onClick={()=> navigate('/Board')}>뒤로 가기</button>
+                    <button onClick={() => navigate('/Board/List')}>뒤로 가기</button>
                 </form>
             </div>
         </div>
