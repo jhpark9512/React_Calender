@@ -22,7 +22,7 @@ function Update(props) {
     let [nameArr, setNameArr] = useState([])
 
     const userData = props.userData;
-    userData.map((index) => { nameArr.push(index.name) })
+    userData.map((index) => {nameArr.push(index.name)})
 
     const update = async() =>{
             const dataRef = doc(db, 'crud', id)

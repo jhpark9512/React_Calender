@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Navbar, Container, Nav, NavbarBrand, NavItem, NavbarToggle, NavDropdown, NavbarCollapse } from 'react-bootstrap';
 import Calender from './component/calender/Calender.js';
 import Create from './component/crud/Create.js';
-import {Board,List} from './component/crud/Board.js';
+import { Board, List } from './component/crud/Board.js';
 import Update from './component/crud/Update.js';
 import Detail from './component/crud/Detail.js';
 import Register from './component/register/register.js';
@@ -18,19 +18,20 @@ function App() {
 
   let [data, setData] = useState([]);
   let [userData, setUserData] = useState([]);
+useEffect(()=>{
+  const listData = async () => {
+    const query = await getDocs(collection(db, 'crud'));
+    setData(query.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }
+  const userdata = async () => {
+    const userQuery = await getDocs(collection(db, 'user'));
+    setUserData(userQuery.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }
+  listData()
+  userdata()
+},[])
 
-  useEffect(() => {
-    const data = async () => {
-      const query = await getDocs(collection(db, 'crud'));
-      setData(query.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    const userdata = async () => {
-      const userQuery = await getDocs(collection(db, 'user'));
-      setUserData(userQuery.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }
-    data()
-    userdata()
-  }, [])
+
 
   const navigate = useNavigate();
 
@@ -42,7 +43,7 @@ function App() {
   }
   return (
     <div className='myApp'>
-
+      
       <Navbar bg="dark" variant="dark">
         <NavbarBrand>MyApp</NavbarBrand>
         <Nav className="me-auto">
@@ -60,10 +61,11 @@ function App() {
       <Routes>
         <Route path="/Calender" element={<Calender />} />
         <Route path="/Create" element={<Create userData={userData} />} />
-        <Route path="/Board" element={<Board/>}>
-        <Route path="List" element={<List data={data}/>}/>
-        <Route path="Update/:id" element={<Update data={data} userData={userData} />}/>
-        <Route path="Detail/:id" element={<Detail data={data}/>} />
+        <Route path="/Board" element={<Board />}>
+          <Route path="List" element={<List data={data} />} />
+          <Route path="Register" element={<Register/>} />
+          <Route path="Update/:id" element={<Update data={data} userData={userData} />} />
+          <Route path="Detail/:id" element={<Detail data={data} />} />
         </Route>
       </Routes>
 

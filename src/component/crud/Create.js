@@ -14,11 +14,15 @@ function Create(props) {
     let [nameArr, setNameArr] = useState([])
 
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const userData = props.userData;
+        console.log(userData)
+        userData.map((a, i) => { nameArr.push(a.name)})
+        console.log(nameArr)
+    }, [])
+
     
-    const userData = props.userData;
-    userData.map((index) => { nameArr.push(index.name) })
-
-
 
     const input = async () => {
 

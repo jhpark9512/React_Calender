@@ -33,7 +33,7 @@ function Register(){
                     <label htmlFor="name">이름</label>
                     <input type="text" name="name" onChange={(e)=>{setRegName(e.target.value)}}/><br />
                     <button type="submit">회원가입</button>
-                    <button onClick={()=> navigate('/Board')}>뒤로 가기</button>
+                    <button onClick={()=> navigate('/Board/List')}>뒤로 가기</button>
                 </form>
             </div>
         </div>

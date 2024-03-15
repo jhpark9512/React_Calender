@@ -22,7 +22,7 @@ function List(props) {
         <div className="container">
              
             <button className="write-button" onClick={()=> navigate('/Create')}>글 작성</button>
-            <button onClick={()=>navigate('/Register')}>가입</button>
+            <button onClick={()=>navigate('/Board/Register')}>가입</button>
             <table>
                     <thead>
                     <tr>
