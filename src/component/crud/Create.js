@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { db } from '../../firebase.js';
 import { addDoc, collection } from "firebase/firestore";
-import { useNavigate, } from 'react-router-dom';
+import { useLocation, useNavigate, } from 'react-router-dom';
 
 function Create(props) {
     let [newTitle, setNewTitle] = useState("")
@@ -11,18 +11,18 @@ function Create(props) {
     let [newUdate, setNewUdate] = useState(newWdate)
     let [newDel, setNewDel] = useState("N")
 
-    let [nameArr, setNameArr] = useState([])
-
     const navigate = useNavigate();
-
-    useEffect(() => {
-        const userData = props.userData;
-        console.log(userData)
-        userData.map((a, i) => { nameArr.push(a.name)})
-        console.log(nameArr)
-    }, [])
-
+    const location = useLocation();
     
+    const user = location.state.user
+
+       
+    // useEffect(() => {
+    //     const userData = props.userData;
+    //     console.log(userData)
+    //     userData.map((a, i) => { nameArr.push(a.name)})
+    //     console.log(nameArr)
+    // }, [])
 
     const input = async () => {
 
@@ -50,10 +50,10 @@ function Create(props) {
                 <form className="form" onSubmit={(e) => {
                     if (newTitle == "") {
                         alert('제목을 입력해주세요')
-                        return false;
+                        e.preventDefault()
                     } else if (newName == "") {
                         alert('작성자를 선택해주세요')
-                        return false;
+                        e.preventDefault()
                     } else {
                         input(e.preventDefault())
                     }
@@ -63,9 +63,9 @@ function Create(props) {
                     <label htmlFor="name">작성자</label>
                     <select onChange={(e) => setNewName(e.target.value)}>
                         {
-                            nameArr.map((value, index) => {
+                            user.map((value, index) => {
                                 return (
-                                    <option key={index}>{nameArr[index]}</option>
+                                    <option key={index}>{user[index].name}</option>
                                 )
                             })
                         }

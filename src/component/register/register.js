@@ -17,7 +17,7 @@ function Register(){
             name: regName
         })
         alert('등록완료')
-        navigate('/Board')
+        navigate('/Board/List')
 
     }
 
