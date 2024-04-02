@@ -9,8 +9,7 @@ function Detail(props) {
     const navigate = useNavigate();
     const data = location.state.data;
     const user = location.state.user
-    console.log(user)
-    
+
     let { id } = useParams();
     
     let readData = data;

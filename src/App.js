@@ -8,7 +8,7 @@ import { Board, List } from './component/crud/Board.js';
 import Update from './component/crud/Update.js';
 import Detail from './component/crud/Detail.js';
 import Register from './component/register/register.js';
-import { Route, Routes, Outlet, useNavigate } from 'react-router-dom';
+import { Route, Routes, useNavigate } from 'react-router-dom';
 
 function App() {
 
@@ -35,13 +35,12 @@ function App() {
           </Nav>
         </Nav>
       </Navbar>
-      <Outlet />
       <br></br>
 
       <Routes>
         <Route path="/Calender" element={<Calender />} />
         <Route path="/Board" element={<Board/>}>
-          <Route path="List" element= {<List/>}/>
+          <Route path="List" element={<List/>}/>
           <Route path="Register" element={<Register />} />
           <Route path="Create" element={<Create/>} />
           <Route path="Update/:id" element={<Update/>} />
