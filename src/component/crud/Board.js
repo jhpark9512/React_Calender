@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from '../../firebase.js';
-import Results from '../hook/data.js';
 import { useNavigate, Link, Outlet } from 'react-router-dom';
 
 function Board() {
