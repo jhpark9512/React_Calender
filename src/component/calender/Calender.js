@@ -7,6 +7,7 @@ function Calender() {
     let today = new Date();
     let [year, setYear] = useState(new Date().getFullYear())
     let [month, setMonth] = useState(new Date().getMonth() + 1);
+    let [selectIdx,setSelectIdx] = useState(null);
 
     let selectDate = new Date(year, month - 1, 1);
     let firstDate = new Date(selectDate.getFullYear(), selectDate.getMonth(), 1);
@@ -44,7 +45,6 @@ function Calender() {
         }
     }
 
-
     //날짜 배열
     for (var i = 0; i < startDate; i++) {
         monthArr.push("")
@@ -54,6 +54,11 @@ function Calender() {
     }
     while (monthArr.length < 42) {
         monthArr.push('')
+    }
+
+    const handleClick = (index) =>{
+        setSelectIdx(index);
+        console.log(index)
     }
 
     return (
@@ -83,7 +88,7 @@ function Calender() {
                     {
                         monthArr.map(function (a, index) {
                             return (
-                                <Box key={index} year={year} month={month} currentDate={currentDate} monthArr={monthArr} index={index} />
+                                <Box key={index} year={year} month={month} currentDate={currentDate} monthArr={monthArr} index={index}  onClick={()=>handleClick(index)}/>
                             )
                         })
                     }

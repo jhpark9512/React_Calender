@@ -10,7 +10,7 @@ import Update from './component/crud/Update.js';
 import Detail from './component/crud/Detail.js';
 import Register from './component/register/register.js';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Test from './component/crud/Test.js';
+import Test from './component/meal/Test.js';
 
 function App() {
 
@@ -39,14 +39,13 @@ function App() {
       </Navbar>
       <br></br>
       
-
       <Routes>
-        <Route path="/Calender" element={<Calender />} />
+        <Route path="/Calender" element={<Calender/>} />
         <Route path="/Test" element={<Test/>}/>
         <Route path="/Board" element={<Board/>}>
           <Route path="List" element={<List/>}/>
-          <Route path="Register" element={<Register />} />
-          <Route path="Create" element={<Create/>} />
+          <Route path="Register" element={<Register/>} />
+          <Route path="Create" element={<Create/>}/>
           <Route path="Update/:id" element={<Update/>} />
           <Route path="Detail/:id" element={<Detail/>} />
         </Route>

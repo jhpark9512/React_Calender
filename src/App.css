@@ -13,7 +13,6 @@
   margin-right: auto;
   padding-top: 30px;
   border: 1px solid black;
-  display: flex;
 }
 
 .date-title{
@@ -134,4 +133,10 @@ table{
   border: 1px solid black;
   width: 100%;
   height: 500px;
+}
+
+/*식권*/
+.meal_container{
+  display: grid;
+  grid-template-columns:  1fr 1fr;
 }
