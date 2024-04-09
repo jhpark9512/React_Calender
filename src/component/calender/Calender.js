@@ -7,7 +7,8 @@ function Calender() {
     let today = new Date();
     let [year, setYear] = useState(new Date().getFullYear())
     let [month, setMonth] = useState(new Date().getMonth() + 1);
-    let [selectIdx,setSelectIdx] = useState(null);
+    const [selectedIdx, setSelectedIdx] = useState(null);
+
 
     let selectDate = new Date(year, month - 1, 1);
     let firstDate = new Date(selectDate.getFullYear(), selectDate.getMonth(), 1);
@@ -56,11 +57,6 @@ function Calender() {
         monthArr.push('')
     }
 
-    const handleClick = (index) =>{
-        setSelectIdx(index);
-        console.log(index)
-    }
-
     return (
         <div className='Calender'>
             <div className='Container'>
@@ -79,7 +75,7 @@ function Calender() {
                             return (
                                 <div className="day" key={index}>
                                     {
-                                        weekArr[i]
+                                        weekArr[index]
                                     }
                                 </div>
                             )
@@ -88,7 +84,14 @@ function Calender() {
                     {
                         monthArr.map(function (a, index) {
                             return (
-                                <Box key={index} year={year} month={month} currentDate={currentDate} monthArr={monthArr} index={index}  onClick={()=>handleClick(index)}/>
+                                <Box key={index}
+                                    year={year}
+                                    month={month}
+                                    currentDate={currentDate}
+                                    monthArr={monthArr}
+                                    index={index}
+                                    selectedIdx={selectedIdx}
+                                    setSelectedIdx={setSelectedIdx} />
                             )
                         })
                     }

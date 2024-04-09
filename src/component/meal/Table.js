@@ -56,7 +56,6 @@ function Table() {
                     })
                 }
             </select>
-            <button>등록</button>
             <table>
                 <thead>
                     <tr>
