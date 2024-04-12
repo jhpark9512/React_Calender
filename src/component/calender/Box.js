@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
+
 function Box(props) {
-    const [box, setBox] = useState("");
-    
+
     const handleClick = (index, e) => {
         props.setSelectedIdx(index);
     }
