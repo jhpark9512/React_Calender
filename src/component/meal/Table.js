@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useLayoutEffect } from "react";
 
-function Table() {
+function Table(props) {
 
     const [option1, setOption1] = useState([]);
     const [option2, setOption2] = useState([]);
@@ -31,6 +31,18 @@ function Table() {
             const result = await response.json();
             setOption2(result);
             console.log(option2);
+        } catch (error) {
+            console.error('데이터를 가져오는 중 오류가 발생했습니다:', error);
+        }
+    };
+    const couponTable = async () => {
+        try {
+            const response = await fetch(`/coupon_users?selectDate`);
+            if (!response.ok) {
+                throw new Error('서버에서 데이터를 가져오지 못했습니다.');
+            }
+            const result = await response.json();
+            
         } catch (error) {
             console.error('데이터를 가져오는 중 오류가 발생했습니다:', error);
         }

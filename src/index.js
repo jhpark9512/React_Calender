@@ -6,16 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.css';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { QueryClient, QueryClientProvider } from "react-query";
-const queryClient = new QueryClient()
+import store from '../src/redux/store.js'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <QueryClientProvider client={queryClient}>
+    <Provider store={store}>
       <BrowserRouter>
-          <App />
+        <App />
       </BrowserRouter>
-  </QueryClientProvider>
+    </Provider>
 );
 
 // If you want to start measuring performance in your app, pass a function

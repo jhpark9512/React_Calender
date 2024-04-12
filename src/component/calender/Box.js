@@ -3,7 +3,6 @@ function Box(props) {
     const [box, setBox] = useState("");
     
     const handleClick = (index, e) => {
-        console.log(index)
         props.setSelectedIdx(index);
     }
     return (

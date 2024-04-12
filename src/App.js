@@ -10,7 +10,8 @@ import Update from './component/crud/Update.js';
 import Detail from './component/crud/Detail.js';
 import Register from './component/register/register.js';
 import { Route, Routes, useNavigate } from 'react-router-dom';
-import Test from './component/meal/Test.js';
+import Coupon from './component/meal/Coupon.js';
+import MotherCompo from './hook/MotherCompo.js';
 
 function App() {
 
@@ -41,7 +42,8 @@ function App() {
       
       <Routes>
         <Route path="/Calender" element={<Calender/>} />
-        <Route path="/Test" element={<Test/>}/>
+        <Route path="/Coupon" element={<Coupon/>}/>
+        <Route path="/MotherCompo" element={<MotherCompo/>}/>
         <Route path="/Board" element={<Board/>}>
           <Route path="List" element={<List/>}/>
           <Route path="Register" element={<Register/>} />

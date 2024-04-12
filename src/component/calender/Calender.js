@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from 'react';
 import Box from './Box.js'
 import Button from 'react-bootstrap/Button';
 
-function Calender() {
+function Calender({onResult}) {
     let today = new Date();
     let [year, setYear] = useState(new Date().getFullYear())
     let [month, setMonth] = useState(new Date().getMonth() + 1);
-    const [selectedIdx, setSelectedIdx] = useState(null);
-
-
-    let selectDate = new Date(year, month - 1, 1);
-    let firstDate = new Date(selectDate.getFullYear(), selectDate.getMonth(), 1);
-    let lastDate = new Date(selectDate.getFullYear(), selectDate.getMonth() + 1, 0);
+    let [selectedIdx, setSelectedIdx] = useState(null);
+   
+    let date = new Date(year, month - 1, 1);
+    let firstDate = new Date(date.getFullYear(), date.getMonth(), 1);
+    let lastDate = new Date(date.getFullYear(), date.getMonth() + 1, 0);
     let currentDate = new Date().getDate(today);
     let startDate = firstDate.getDay();
     let weekArr = ['일', '월', '화', '수', '목', '금', '토'];
     let monthArr = [];
 
-
+     var selectedDate = year+"년 "+month+"월 "+selectedIdx+"일";
     //년도, 월 이동
     const nextYear = () => {
         setYear(year + 1)
@@ -91,7 +90,8 @@ function Calender() {
                                     monthArr={monthArr}
                                     index={index}
                                     selectedIdx={selectedIdx}
-                                    setSelectedIdx={setSelectedIdx} />
+                                    setSelectedIdx={setSelectedIdx}
+                                    />
                             )
                         })
                     }

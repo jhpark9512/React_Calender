@@ -60,7 +60,7 @@ app.get('/coupon_types', async (req, res) => {
 })
 
 //식권대장 테이블(다중join)
-const getMainTable = async () => {
+const getMainTable = async (date) => {
     try {
         const result = await postDB.query(
             "SELECT a.use_date, c.type, b.id, b.name, b.department, a.create_dt, a.update_dt from coupons AS a "
@@ -68,7 +68,7 @@ const getMainTable = async () => {
             +"ON a.coupon_user_id = b.id "
             +"INNER JOIN coupon_types AS c "
             +"ON a.coupon_type_code = c.code "
-            +"WHERE use_date ='2024-04-05' ORDER BY id ASC");
+            +"WHERE use_date ="+ date + " ORDER BY id ASC");
         console.log(result.rows)
         return result.rows
     } catch (err) {
@@ -80,7 +80,7 @@ const getMainTable = async () => {
 //다중 join으로만든 결과물 테이블
 app.get('/main_table', async (req, res) => {
     try {
-        const data = await getMainTable();
+        const data = await getMainTable(date);
         console.log('데이터 타입:' + typeof (data))
         res.setHeader('Content-Type', 'application/json');
         console.log('json: ' + JSON.stringify(data))
