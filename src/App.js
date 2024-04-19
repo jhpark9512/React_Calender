@@ -11,10 +11,10 @@ import Detail from './component/crud/Detail.js';
 import Register from './component/register/register.js';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Coupon from './component/meal/Coupon.js';
-import MotherCompo from './hook/MotherCompo.js';
+import Effect from './studyingLife/Effect.js';
+import LifeCycleEX from './studyingLife/LifeCycleEX.js'
 
 function App() {
-
 
   const navigate = useNavigate();
 
@@ -43,7 +43,8 @@ function App() {
       <Routes>
         <Route path="/Calender" element={<Calender/>} />
         <Route path="/Coupon" element={<Coupon/>}/>
-        <Route path="/MotherCompo" element={<MotherCompo/>}/>
+        <Route path="/Effect" element={<Effect/>}/>
+        <Route path="/LifeCycleEX" element={<LifeCycleEX/>}/>
         <Route path="/Board" element={<Board/>}>
           <Route path="List" element={<List/>}/>
           <Route path="Register" element={<Register/>} />
