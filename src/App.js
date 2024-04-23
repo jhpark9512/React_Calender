@@ -12,7 +12,9 @@ import Register from './component/register/register.js';
 import { Route, Routes, useNavigate } from 'react-router-dom';
 import Coupon from './component/meal/Coupon.js';
 import Effect from './studyingLife/Effect.js';
-import LifeCycleEX from './studyingLife/LifeCycleEX.js'
+import LifeCycleEX from './studyingLife/LifeCycleEX.js';
+import CopyEX from './EX/copyEX.js';
+import ListEX from './EX/listEX.js';
 
 function App() {
 
@@ -45,6 +47,8 @@ function App() {
         <Route path="/Coupon" element={<Coupon/>}/>
         <Route path="/Effect" element={<Effect/>}/>
         <Route path="/LifeCycleEX" element={<LifeCycleEX/>}/>
+        <Route path="/CopyEX" element={<CopyEX/>}/>
+        <Route path="/ListEX" element={<ListEX/>}/>
         <Route path="/Board" element={<Board/>}>
           <Route path="List" element={<List/>}/>
           <Route path="Register" element={<Register/>} />
